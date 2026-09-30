@@ -29,7 +29,7 @@ elseif n_events < 10
     warning('focal_stress:fewEvents', 'Only %d events; results are more reliable with 10 or more', n_events);
 end
 if ~isempty(opt.RandomSeed)
-    rng(opt.RandomSeed);
+    rng(opt.RandomSeed, 'twister');
 end
 
 planes = plane_set(M);

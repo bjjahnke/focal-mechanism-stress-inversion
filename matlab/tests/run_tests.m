@@ -35,7 +35,7 @@ end
 end
 
 function test_auxiliary_plane_is_consistent()
-rand('seed', 1); %#ok<RAND>
+rng(1);
 n = 100;
 T = table(360 * rand(n, 1), 1 + 88 * rand(n, 1), -179 + 358 * rand(n, 1), ...
     'VariableNames', {'strike', 'dip', 'rake'});
