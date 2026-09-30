@@ -1,0 +1,10 @@
+{
+  "input_catalog": "catalog.csv",
+  "output_dir": "output",
+  "friction": 0.6,
+  "n_runs": 500,
+  "max_iterations": 20,
+  "random_seed": 1,
+  "significance_level": 0.05,
+  "make_plots": true
+}

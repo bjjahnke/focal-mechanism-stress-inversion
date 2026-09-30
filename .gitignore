@@ -1,0 +1,23 @@
+# Pipeline outputs (regenerate with the example configs)
+examples/*/output/
+output/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+
+# MATLAB
+*.asv
+*.m~
+slprj/
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
