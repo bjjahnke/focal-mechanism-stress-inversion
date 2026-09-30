@@ -10,7 +10,7 @@ This is a three-step data pipeline, available in both **Python** and **MATLAB**.
 - which nodal plane most likely slipped for each event
 - a statistical check of whether one stress state explains all the data
 
-I originally wrote this code at UW–Madison to estimate the stress in a geothermal reservoir for the DOE-funded WHOLESCALE project ([Jahnke et al., 2023, *Geothermics*](https://www.sciencedirect.com/science/article/pii/S0375650523000378)). This repository rebuilds that research code as a general, tested, documented tool that works on any catalog.
+I originally wrote this code during my Master's at UW–Madison to estimate the stress in a geothermal reservoir for the DOE-funded WHOLESCALE project ([Jahnke et al., 2023, *Geothermics*](https://www.sciencedirect.com/science/article/pii/S0375650523000378)). This repository rebuilds that research code as a general, tested, documented tool that works on any catalog.
 
 ---
 
@@ -156,7 +156,7 @@ Settings go in a small JSON config. Only the two paths are required:
 | Mean misfit | 45° ± 46° |
 | Variance test | passes (p = 0.70): one stress state explains the data within their uncertainty |
 
-**Interpretation:** a normal-faulting stress regime with the least compressive stress oriented east–west, which favors slip on faults striking roughly north–south. In the paper, this result constrained the initial stress model used to evaluate slip tendency on the reservoir's faults, which in turn informs well placement, stimulation design and induced-seismicity risk.
+**Interpretation:** a normal-faulting stress regime with the least compressive stress oriented east–west, which favors slip on faults striking roughly north–south. In the paper, this result constrained the initial stress model used to evaluate slip tendency on the reservoir's faults, which in turn informs well placement, stimulation design and induced seismicity risk.
 
 Notes on the example data:
 
@@ -174,23 +174,6 @@ Notes on the example data:
 - **MATLAB:** `matlab/tests/run_tests.m`, 7 checks covering the same ground.
 - **The two languages agree.** On the same inputs, Python and MATLAB write identical output files, including runs that cycle and results with more than one stress solution.
 - **CI:** both test suites run on every push through GitHub Actions.
-
-## How this differs from the original research code
-
-The original was a pair of MATLAB scripts tied to one dataset. This version:
-
-| Original | Now |
-|---|---|
-| Hard-coded file paths and dataset | Any CSV catalog, set in a config file |
-| `.mat` files passed between scripts | Plain CSV outputs with a documented schema |
-| No input checks | Validation with row-level error messages |
-| Fixed 10 iterations per run | Stops when the plane choice settles; detects and reports runs that cycle |
-| Stress solutions de-duplicated one column at a time, which could mismatch rows | Solutions grouped by their full set of planes, so every row is internally consistent |
-| Needed the Statistics Toolbox | No toolboxes |
-| MATLAB only | Python and MATLAB, with the same outputs |
-| No tests | Unit tests, a known-answer synthetic test and CI |
-
-It also fixes a sign error in the original second-plane calculation: for 5 of the 31 example events, the plane-2 rake pointed the wrong way, so plane 2's P and T axes didn't match plane 1's. The new code is checked by requiring both planes to give identical P and T axes.
 
 ## Repository layout
 
